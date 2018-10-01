@@ -1,0 +1,17 @@
+SCHEMA_PATH = 'addradio_yellow-pages_v1.xsd'
+EXAMPLE_PATH = 'addradio_yellow-pages_v1_example_wdr_1live.xml'
+
+def schema_test(file_path = EXAMPLE_PATH)
+  `xmllint --noout --schema #{SCHEMA_PATH} #{file_path}`
+end
+
+guard :shell do
+  watch SCHEMA_PATH do
+    schema_test(EXAMPLE_PATH)
+  end
+
+  # exclude test/java/* and test\java\*
+  watch %r(^(?!test[\/\\]java).+\.xml) do |file_path|
+    schema_test(file_path[0])
+  end
+end

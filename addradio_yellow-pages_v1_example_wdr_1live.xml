@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<yp:yellow-page
+    xmlns:yp="https://addradio.net/services/yellow-pages/v1"
+    aggregator-id="f0a1"
+    >
+
+    <yp:broadcaster id="broadcaster_id" name="Westdeutscher Rundfunk (WDR)">
+        <yp:stations>
+            <yp:station id="station_id" name="1 Live">
+                <yp:website url="http://www1.wdr.de/radio/1live/index.html" />
+
+                <yp:logos>
+                    <!-- multiple qualities/formats possible -->
+                    <yp:logo mimetype="image/png" width="624" height="624" url="http://www1.wdr.de/radio/logo-1live-100~_v-Podcast.png" />
+                </yp:logos>
+
+                <yp:contact>
+                    <yp:address>
+                        <![CDATA[1LIVE
+Westdeutscher Rundfunk Köln
+50600 Köln]]>
+                    </yp:address>
+                    <yp:email>test@example.invalid</yp:email>
+                    <yp:phone>0049(0)12345 12345</yp:phone>
+                </yp:contact>
+
+                <yp:claim>Für den Sektor</yp:claim>
+                <yp:description>
+                    <![CDATA[1LIVE ist das unangepasste Radio des WDR: provokant, anders und immer in Bewegung.
+Euer Freundeskreis im Sektor!]]>
+                </yp:description>
+
+                <yp:location>
+                    <yp:coordinate>
+                        <yp:latitude>50.93333</yp:latitude>
+                        <yp:longitude>6.95</yp:longitude>
+                    </yp:coordinate>
+
+                    <yp:city>Köln</yp:city>
+                    <yp:state>Nordrhein-Westfalen</yp:state>
+                    <yp:country>Germany</yp:country>
+                </yp:location>
+
+                <yp:channels>
+                    <yp:channel id="channel_id" name="live">
+
+                        <!-- optional: take from station if not supplied here -->
+                        <yp:website url="http://www1.wdr.de/radio/1live/index.html" />
+
+                        <yp:location>
+                            <!-- optional: take from station if not supplied here -->
+                            <yp:coordinate>
+                                <yp:latitude>50.93333</yp:latitude>
+                                <yp:longitude>6.95</yp:longitude>
+                            </yp:coordinate>
+
+                            <yp:city>Köln</yp:city>
+                            <yp:state>Nordrhein-Westfalen</yp:state>
+                            <yp:country>Germany</yp:country>
+                        </yp:location>
+
+                        <yp:categories>
+                            <yp:category>Pop</yp:category>
+                        </yp:categories>
+
+                        <yp:streams>
+                          <yp:stream id="stream_id_0" format="mp3" quality="56" url="http://addrad.io/444yxh2" />
+                          <yp:stream id="stream_id_1" format="mp3" quality="128" url="http://addrad.io/444yxjj" />
+                        </yp:streams>
+                    </yp:channel>
+                </yp:channels>
+
+            </yp:station>
+        </yp:stations>
+    </yp:broadcaster>
+
+</yp:yellow-page>

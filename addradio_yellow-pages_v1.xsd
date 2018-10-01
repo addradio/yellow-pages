@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema
+    attributeFormDefault="unqualified"
+    elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:yp="https://addradio.net/services/yellow-pages/v1"
+    targetNamespace="https://addradio.net/services/yellow-pages/v1"
+    >
+
+  <xs:element name="yellow-page">
+    <xs:complexType>
+      <xs:sequence>
+
+        <xs:element name="broadcaster" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+
+              <xs:element name="stations" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="station" type="yp:stationType" minOccurs="0" maxOccurs="unbounded"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+            </xs:sequence>
+            <xs:attribute name="id" type="yp:idType" use="optional"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="aggregator-id" type="yp:aggregatorIdType" use="optional">
+        <xs:annotation><xs:documentation>AddRadio internal ID</xs:documentation></xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="stationType">
+    <xs:sequence>
+
+      <xs:element name="website" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:attribute name="url" type="xs:anyURI" use="required"/>
+        </xs:complexType>
+      </xs:element>
+
+
+      <xs:element name="logos" minOccurs="1" maxOccurs="1">
+        <xs:annotation><xs:documentation>multiple qualities/formats possible</xs:documentation></xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="logo" type="yp:imageType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="contact" type="yp:contactType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="claim" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation><xs:documentation>cdata block formatted with linebreaks</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="location" type="yp:locationType" minOccurs="0" maxOccurs="1"/>
+
+      <xs:element name="channels" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="channel" type="yp:channelType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="yp:idType" use="optional"/>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="contactType">
+    <xs:sequence>
+      <xs:element name="address" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation><xs:documentation>cdata block formatted with linebreaks</xs:documentation></xs:annotation>
+      </xs:element>
+      <xs:element name="email" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="phone" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="channelType">
+    <xs:sequence>
+      <xs:element name="website" minOccurs="0" maxOccurs="1">
+        <xs:annotation><xs:documentation>optional: take from station if not supplied here </xs:documentation></xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="url" type="xs:anyURI" use="required"/>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="location" type="yp:locationType" minOccurs="0" maxOccurs="1">
+        <xs:annotation><xs:documentation>optional: take from station if not supplied here </xs:documentation></xs:annotation>
+      </xs:element>
+
+      <xs:element name="categories" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="category" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="streams" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="stream" type="yp:streamType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:sequence>
+    <xs:attribute name="id" type="yp:idType" use="optional"/>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="locationType">
+    <xs:sequence>
+      <xs:element name="coordinate" type="yp:coordinateType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="city" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="state" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="country" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="streamType">
+    <xs:attribute name="id" type="yp:idType" use="optional"/>
+    <xs:attribute name="url" type="xs:anyURI" use="required"/>
+    <xs:attribute name="format" type="yp:streamFormatType" use="required"/>
+    <xs:attribute name="quality" type="yp:streamQualityType" use="required"/>
+  </xs:complexType>
+
+  <xs:simpleType name="aggregatorIdType">
+    <xs:restriction base="xs:string">
+      <xs:annotation><xs:documentation>AddRadio internal ID</xs:documentation></xs:annotation>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="idType">
+    <xs:restriction base="xs:string">
+      <xs:annotation><xs:documentation>AddRadio internal ID</xs:documentation></xs:annotation>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="coordinateType">
+    <xs:sequence>
+      <xs:element name="latitude" minOccurs="1" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-90.0"/>
+            <xs:maxInclusive value="90.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="longitude" minOccurs="1" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-180.0"/>
+            <xs:maxInclusive value="180.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="imageType">
+    <xs:attribute name="url" type="xs:anyURI" use="required"/>
+    <xs:attribute name="mimetype" type="yp:mimetypeType" use="required"/>
+    <xs:attribute name="width" type="xs:integer" use="required"/>
+    <xs:attribute name="height" type="xs:integer" use="required"/>
+  </xs:complexType>
+
+  <xs:simpleType name="mimetypeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="image/png"/>
+      <xs:enumeration value="image/jpeg"/>
+      <xs:enumeration value="image/svg+xml"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="streamFormatType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="mp3"/>
+      <xs:enumeration value="aac"/>
+      <xs:enumeration value="ogg/vorbis"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="streamQualityType">
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="8"/>
+      <xs:enumeration value="16"/>
+      <xs:enumeration value="24"/>
+      <xs:enumeration value="32"/>
+      <xs:enumeration value="40"/>
+      <xs:enumeration value="48"/>
+      <xs:enumeration value="56"/>
+      <xs:enumeration value="64"/>
+      <xs:enumeration value="80"/>
+      <xs:enumeration value="96"/>
+      <xs:enumeration value="112"/>
+      <xs:enumeration value="128"/>
+      <xs:enumeration value="160"/>
+      <xs:enumeration value="192"/>
+      <xs:enumeration value="224"/>
+      <xs:enumeration value="256"/>
+      <xs:enumeration value="320"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
