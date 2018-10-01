@@ -1,6 +1,6 @@
 # yellow-pages
 
-This Project contains the XML schema definition, XML examples and tools on how to deal with data transfered by AddRadio Yellow Page Services.
+This project contains the XML schema definition, XML examples and tools on how to deal with data transfered by AddRadio Yellow Page Services.
 
 ## Schema
 
